@@ -10,39 +10,25 @@ In this TP, I explored the complete pipeline of building a federated learning sy
 
 ## Step 1: Data Generation & Loading
 
-data_utils.py:
-        Splits FashionMNIST into client datasets using the Dirichlet distribution (alpha).<br>
-        loads client-specific data for training and testing.<br>
+data_utils.py: Splits FashionMNIST into client datasets using the Dirichlet distribution (alpha) and loads client-specific data for training and testing.<br>
 
 ## Step 2: Model Implementation
 
-model.py
-        Defines CustomFashionModel, a neural network for FashionMNIST classification.<br>
-        Includes methods to get and set model parameters for federated learning.
+model.py: Defines CustomFashionModel, a neural network for FashionMNIST classification and includes methods to get and set model parameters for federated learning.
 
 ## Step 3: Federated Client
 
-run_client.py
-        Creates FlowerClient to train and evaluate the model on local data.<br>
-        Handles parameter exchange with the server for federated updates.
+run_client.py: Creates FlowerClient to train and evaluate the model on local data and handles parameter exchange with the server for federated updates.
 
 ## Step 4: Running a Client
 
-run_client.py
-        Launches a client with a given ID to connect to the server.<br>
-        Starts the client to participate in federated learning rounds.
+run_client.py: Launches a client with a given ID to connect to the server and starts the client to participate in federated learning rounds.
 
 ## Step 5: Server Components
 
-server.py
-        Sets up the server with FedAvgStrategy and CustomClientManager.<br>
-        Provides the server with tools to manage clients and aggregation.
-strategy.py
-        Implements CustomClientManager for client registration and sampling.<br>
-        Defines FedAvgStrategy to aggregate client updates using federated averaging.
-start_server.py
-        Starts the server with specified rounds and alpha value.<br>
-        Saves training metrics (accuracy, loss) to a JSON file.
+server.py: Sets up the server with FedAvgStrategy and CustomClientManager and provides the server with tools to manage clients and aggregation.<br>
+strategy.py: Implements CustomClientManager for client registration and sampling and defines FedAvgStrategy to aggregate client updates using federated averaging.<br>
+start_server.py: Starts the server with specified rounds and alpha value and saves training metrics (accuracy, loss) to a JSON file.
 
 ## Step 7: Result Analysis
 
