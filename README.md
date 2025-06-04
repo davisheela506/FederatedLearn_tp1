@@ -5,33 +5,27 @@ In this TP, I explored the complete pipeline of building a federated learning sy
 
 ### Project steps
 
-## Step 1: Data Generation & Loading
+Step 1: Data Generation & Loading
 
-This part is handled by the data_utils.py file. It takes the FashionMNIST dataset—a collection of clothing images—and splits it into smaller chunks for each client, like dividing a big photo album among friends. It uses a math rule called the Dirichlet distribution, with a setting called alpha, to decide how evenly or unevenly the types of clothes are shared among clients. The split data is saved in a folder called distributed_data. The same file also helps load a client’s specific chunk of data, making sure it’s ready for training and testing by organizing the images properly.
-
+Data generation is handled by data_utils.py. This script splits the FashionMNIST dataset into client-specific subsets using the Dirichlet distribution, controlled by the alpha parameter, to simulate varying levels of data heterogeneity. It saves the generated datasets to the distributed_data folder. The data_utils.py file also includes a function to load client data, which normalizes, reshapes, and splits the data into training and testing sets, transforming them into tensors and preparing DataLoader objects for model training.
 ## Step 2: Model Implementation
 
-The model.py file creates the model we use to identify clothes in the FashionMNIST images. It builds a simple brain-like system called CustomFashionModel that learns to recognize things like shirts or shoes. The model flattens the images into a long list of numbers, processes them through two layers, and makes a guess about the clothing type. It has a train_epoch function that teaches the model by showing it images, tracking how well it’s learning, and adjusting its guesses. The test_epoch function checks how good the model is by showing it new images it hasn’t seen before, then reports how many it got right.
-
+The model is implemented in model.py. This file defines CustomFashionModel, a neural network with a flatten layer followed by two linear layers (784 → 128 → 10) and a ReLU activation, designed for FashionMNIST classification. It includes a train_epoch function that trains the model for one epoch, initializing metrics to zero, computing loss, and aggregating metrics across the dataset. The test_epoch function evaluates the model on unseen data, initializing metrics, predicting on the test set, and returning the aggregated metrics.
 ## Step 3: Federated Client
 
-The run_client.py file takes care of this step. It sets up each client—like a person with their own photo collection—to teach the model using their images. The fit function does the teaching for a set number of rounds, called epochs, and keeps track of how well the model learns. After finishing, it shares the learning progress. The evaluate function tests the model on the client’s unseen images and shares how well it did.
-
+This step is managed by run_client.py. The fit function in this file calls the model’s training method for the number of epochs specified in the configuration, retrieves metrics from train_epoch, and returns them after training. The evaluate function calls test_epoch to assess the model on the client’s test data and returns the evaluation metrics.
 ## Step 4: Running a Client
 
-To get a client working, we use run_client.py. You start a client by typing python3 run_client.py --cid NUMBER in the terminal, where NUMBER is the client’s ID, like 1 or 2. The server needs to be running first, or the client won’t work. This file lets you pick a client ID with --cid and connects to the server at localhost:8080. It grabs the client’s data using data_utils.py, sets up the model and client, and gets the client started so it can join the team effort.
-
+Client execution is handled by run_client.py. The command python3 run_client.py --cid INTEGER runs a client, which requires the server to be active; otherwise, it will fail. The script supports a --cid argument to set the client ID and connects to the server at localhost:8080. It calls the load_client_data function from data_utils.py to load the client’s data, creates the model and client instance, and starts the client to participate in federated learning.
 ## Step 5: Server Components
 
-The server has two main parts, handled by strategy.py. First, CustomClientManager keeps track of all the clients, like a team leader with a list of team members. It adds new clients to the list with a register function, removes them with unregister, waits for enough clients to join using wait_for, and picks a group of clients to work each round with sample. Second, FedAvgStrategy is the plan for combining everyone’s work. It decides how many clients to use with configure_fit and configure_evaluate, mixes their training updates with aggregate_fit by averaging them, and does the same for test results with aggregate_evaluate.
-
+The client manager is implemented in strategy.py as CustomClientManager, and the strategy is defined as FedAvgStrategy in the same file. The client manager maintains a dictionary of registered clients by their IDs, with the register function adding clients and the unregister function removing them. The wait_for function ensures enough clients are available, and the sample function selects a subset of clients for each round. The configure_fit and configure_evaluate functions in FedAvgStrategy determine the number of clients to sample based on the minimum required or a fraction of connected clients. The aggregate_fit function combines training weights from clients using a weighted average, while aggregate_evaluate does the same for evaluation metrics.
 ## Step 6: Running the Server
 
-The server runs using start_server.py. You start it by typing python3 start_server.py in the terminal. This script sets up the server address, pulls in settings like the number of rounds and alpha value, and uses the team leader and plan from strategy.py. It then gets the server going, collects the results of the team’s work, and saves them in a file like alpha_1.0.json to look at later.
-
+The server is managed by start_server.py. The command python3 start_server.py launches the server. This script sets the server address, imports the number of rounds and alpha value from the configuration, and uses CustomClientManager and FedAvgStrategy from strategy.py. It then configures and runs the server, capturing the training history and saving it to a JSON file (e.g., alpha_1.0.json).
 ## Step 7: Result Analysis
 
-To see how well the model learned, we use analyze_results.py and plot_metrics.py. You run it with python3 analyze_results.py, and it makes pictures and tables of the results. These pictures, like alpha_1.0.png, are saved in a plots folder and show how the model improved over time, with titles that include the experiment’s details. The save_metrics.py file makes sure all the learning progress, like how many images the model got right, is saved in JSON files for us to check later.
+Result visualization is handled by analyze_results.py and plot_metrics.py. The command python3 analyze_results.py generates visualizations and tables. Results are saved to the plots folder as images (e.g., alpha_1.0.png), with plot titles reflecting the experiment’s parameters. The save_metrics.py file ensures the training history (accuracy, loss) is saved to JSON files for further analysis.
 
 ## Step 8: Running the Simulation
 
