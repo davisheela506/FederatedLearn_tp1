@@ -11,30 +11,30 @@ In this TP, I explored the complete pipeline of building a federated learning sy
 ## Step 1: Data Generation & Loading
 
 data_utils.py:
-        Splits FashionMNIST into client datasets using the Dirichlet distribution (alpha) and loads client-specific data for training and testing.
+        Splits FashionMNIST into client datasets using the Dirichlet distribution (alpha) and loads client-specific data for training and testing.<br>
 
 ## Step 2: Model Implementation
 
 model.py
-        Defines CustomFashionModel, a neural network for FashionMNIST classification.
+        Defines CustomFashionModel, a neural network for FashionMNIST classification.<br>
         Includes methods to get and set model parameters for federated learning.
 
 ## Step 3: Federated Client
 
 run_client.py
-        Creates FlowerClient to train and evaluate the model on local data.
+        Creates FlowerClient to train and evaluate the model on local data.<br>
         Handles parameter exchange with the server for federated updates.
 
 ## Step 4: Running a Client
 
 run_client.py
-        Launches a client with a given ID to connect to the server.
+        Launches a client with a given ID to connect to the server.<br>
         Starts the client to participate in federated learning rounds.
 
 ## Step 5: Server Components
 
 server.py
-        Sets up the server with FedAvgStrategy and CustomClientManager.
+        Sets up the server with FedAvgStrategy and CustomClientManager.<br>
         Provides the server with tools to manage clients and aggregation.
 strategy.py
         Implements CustomClientManager for client registration and sampling.
@@ -46,7 +46,7 @@ start_server.py
 ## Step 7: Result Analysis
 
 analyze_results.py
-        Loads results and displays a table of accuracy/loss per round.
+        Loads results and displays a table of accuracy/loss per round. <br>
         Creates plots to visualize training progress over rounds.
 plot_metrics.py
         Plots accuracy and loss from JSON results as line graphs.
@@ -58,7 +58,7 @@ save_metrics.py
 ## Step 8: Running the Simulation
 
 run_simulation.py
-        Generates client data and starts the server for a full simulation.
+        Generates client data and starts the server for a full simulation.<br>
         Coordinates federated learning with specified settings (clients, rounds).
 launch_all.sh
         Runs multiple experiments for different alpha values automatically.
@@ -66,11 +66,14 @@ launch_all.sh
 launch_experiments.sh
         Runs experiments for different alpha values with fewer logs.
         Focuses on saving results and plots for quick comparison.
+### Hyperparameters
+
+Initial: 10 clients, 30 rounds, 1 epoch, α=1.0, batch size=32, learning rate=0.01. 
 
 ## Additional Files
 
 logger.py
-        Tracks training progress (accuracy, loss) per round.
+        Tracks training progress (accuracy, loss) per round.<br>
         Saves data in JSON or CSV format for analysis.
 fl_results.json, alpha_0.1.json, alpha_1.0.json, alpha_10.0.json, fedavg_alpha_*.json, results_a0.1_r10_c5.json
         Store training results like accuracy and loss per round.
