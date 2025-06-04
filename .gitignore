@@ -1,6 +1,9 @@
-echo "__pycache__/" >> .gitignore
-echo "*.py[cod]" >> .gitignore
-echo "*.log" >> .gitignore
-echo "distributed_data/" >> .gitignore  # Exclude large generated data
-echo "figures/" >> .gitignore          # Exclude generated plots
-echo "plots/" >> .gitignore            # Exclude plot outputs
+data/
+distributed_data/
+figures/
+plots/
+results/
+results.json
+ft_results.json
+*.pyc
+__pycache__/
