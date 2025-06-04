@@ -11,7 +11,8 @@ In this TP, I explored the complete pipeline of building a federated learning sy
 ## Step 1: Data Generation & Loading
 
 data_utils.py:
-        Splits FashionMNIST into client datasets using the Dirichlet distribution (alpha) and loads client-specific data for training and testing.<br>
+        Splits FashionMNIST into client datasets using the Dirichlet distribution (alpha).<br>
+        loads client-specific data for training and testing.<br>
 
 ## Step 2: Model Implementation
 
@@ -37,10 +38,10 @@ server.py
         Sets up the server with FedAvgStrategy and CustomClientManager.<br>
         Provides the server with tools to manage clients and aggregation.
 strategy.py
-        Implements CustomClientManager for client registration and sampling.
+        Implements CustomClientManager for client registration and sampling.<br>
         Defines FedAvgStrategy to aggregate client updates using federated averaging.
 start_server.py
-        Starts the server with specified rounds and alpha value.
+        Starts the server with specified rounds and alpha value.<br>
         Saves training metrics (accuracy, loss) to a JSON file.
 
 ## Step 7: Result Analysis
@@ -49,10 +50,10 @@ analyze_results.py
         Loads results and displays a table of accuracy/loss per round. <br>
         Creates plots to visualize training progress over rounds.
 plot_metrics.py
-        Plots accuracy and loss from JSON results as line graphs.
+        Plots accuracy and loss from JSON results as line graphs.<br>
         Saves the graphs as images (e.g., alpha_1.0.png).
 save_metrics.py
-        Saves training history (accuracy, loss) to a JSON file.
+        Saves training history (accuracy, loss) to a JSON file.<br>
         Ensures results are stored for later analysis.
 
 ## Step 8: Running the Simulation
@@ -61,7 +62,7 @@ run_simulation.py
         Generates client data and starts the server for a full simulation.<br>
         Coordinates federated learning with specified settings (clients, rounds).
 launch_all.sh
-        Runs multiple experiments for different alpha values automatically.
+        Runs multiple experiments for different alpha values automatically.<br>
         Starts server, clients, and saves results with plots.
 launch_experiments.sh
         Runs experiments for different alpha values with fewer logs.
@@ -75,6 +76,6 @@ Initial: 10 clients, 30 rounds, 1 epoch, α=1.0, batch size=32, learning rate=0.
 logger.py
         Tracks training progress (accuracy, loss) per round.<br>
         Saves data in JSON or CSV format for analysis.
-fl_results.json, alpha_0.1.json, alpha_1.0.json, alpha_10.0.json, fedavg_alpha_*.json, results_a0.1_r10_c5.json
-        Store training results like accuracy and loss per round.
+fl_results.json, alpha_0.1.json, alpha_1.0.json, alpha_10.0.json, fedavg_alpha_*.json, results_a0.1_r10_c5.json<br>
+        Store training results like accuracy and loss per round.<br>
         Allow comparison of performance across different settings.
