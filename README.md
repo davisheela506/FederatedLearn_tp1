@@ -10,22 +10,22 @@ In this TP, I explored the complete pipeline of building a federated learning sy
 
 ## Step 1: Data Generation & Loading
 
-   data_utils.py: Splits FashionMNIST into client datasets using Dirichlet distribution (alpha).
+   data_utils.py:  Splits FashionMNIST into client datasets using Dirichlet distribution (alpha).
     Loads client-specific data for training and testing.
 
 ## Step 2: Model Implementation
 
-    model.py: Defines CustomFashionModel, a neural network for FashionMNIST classification.
+    model.py:  Defines CustomFashionModel, a neural network for FashionMNIST classification.
     Includes methods to get and set model parameters for federated learning.
 
 ## Step 3: Federated Client
 
-    run_client.py: Creates FlowerClient to train and evaluate the model on local data.
+    run_client.py:  Creates FlowerClient to train and evaluate the model on local data.
     Handles parameter exchange with the server for federated updates.
 
 ## Step 4: Running a Client
 
-    run_client.py: Launches a client with a given ID to connect to the server.
+    run_client.py:  Launches a client with a given ID to connect to the server.
     Starts the client to participate in federated learning rounds.
 
 ## Step 5: Server Components
@@ -61,7 +61,7 @@ In this TP, I explored the complete pipeline of building a federated learning sy
 
 ## Additional Files
 
-    logger.py-Tracks training progress (accuracy, loss) per round.
+    logger.py Tracks training progress (accuracy, loss) per round.
     Saves data in JSON or CSV format for analysis.
     fl_results.json, alpha_0.1.json, alpha_1.0.json, alpha_10.0.json, fedavg_alpha_*.json, results_a0.1_r10_c5.json
     Stores training results like accuracy and loss per round.
