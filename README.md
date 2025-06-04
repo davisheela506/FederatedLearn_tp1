@@ -11,7 +11,7 @@ In this TP, I explored the complete pipeline of building a federated learning sy
 ## Step 1: Data Generation & Loading
 
    data_utils.py:  Splits FashionMNIST into client datasets using Dirichlet distribution (alpha).
-    Loads client-specific data for training and testing.
+   Loads client-specific data for training and testing.
 
 ## Step 2: Model Implementation
 
