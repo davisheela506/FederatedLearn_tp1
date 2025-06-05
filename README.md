@@ -58,7 +58,7 @@ Initial: 10 clients, 30 rounds, 1 epoch, α=1.0, batch size=32, learning rate=0.
 
 logger.py
         Tracks training progress (accuracy, loss) per round.<br>
-        Saves data in JSON or CSV format for analysis.
+        Saves data in JSON or CSV format for analysis. <br>
 fl_results.json, alpha_0.1.json, alpha_1.0.json, alpha_10.0.json, fedavg_alpha_*.json, results_a0.1_r10_c5.json<br>
         Store training results like accuracy and loss per round.<br>
         Allow comparison of performance across different settings.
